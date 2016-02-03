@@ -10,16 +10,21 @@
 <script src="../libs/jSignature.min.js"></script>
 <script>
 	$(document).ready(function() {
-		$("#signature").jSignature();
-		var datapair = $sigdiv.jSignature("getData", "svgbase64") 
-		var i = new Image()
-		i.src = "data:" + datapair[0] + "," + datapair[1] 
-		$(i).appendTo($("#export") // append the image (SVG) to DOM.
-	})
+		var $sigdiv = $("#signature").jSignature();
+		$('#go').click(function(){
+			var datapair = $sigdiv.jSignature("getData", "svg") ;
+			alert(datapair[1]);
+			var i = new Image();
+			i.src = "data:" + datapair[0] + "," + datapair[1]; 
+			$(i).appendTo($("#export")); // append the image (SVG) to DOM.
+		});
+	});
+	
 </script>
 </head>
 <body>
 	<div id="signature"></div>
 	<div id="export">export</div>
+	<input type="button" id="go" value="go"/>
 </body>
 </html>
